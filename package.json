@@ -1,0 +1,23 @@
+{
+  "name": "wd-exec",
+  "version": "1.1.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js -R spec",
+    "readme": "pretty-readme > readme.md"
+  },
+  "author": "chunpu",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^2.1.1",
+    "min-request": "^1.2.0"
+  },
+  "description": "Tiny Web Driver",
+  "keywords": [
+    "webdriver",
+    "phantomjs",
+    "phantom",
+    "Selenium",
+    "SauceLabs"
+  ]
+}
