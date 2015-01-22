@@ -22,9 +22,9 @@ Api
 
 #### init
 
-- browser, default is none, [more info](https://code.google.com/p/selenium/wiki/DesiredCapabilities)
-- host, default is phantomjs default host: "localhost:8910"
-- sauceLabs, if true, use "ondemand.saucelabs.com:80" as host, and use name and key in env, `env.SAUCE_USERNAME, env.SAUCE_ACCESS_KEY`
+- `browser` default is none, [more info](https://code.google.com/p/selenium/wiki/DesiredCapabilities)
+- `host` default is phantomjs's default host: `localhost:8910`
+- `sauceLabs` if true, use `ondemand.saucelabs.com:80` as host, and use name and key in env: `env.SAUCE_USERNAME, env.SAUCE_ACCESS_KEY`
 
 ```js
 session.init({

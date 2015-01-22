@@ -1,6 +1,6 @@
 {
   "name": "wd-exec",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "index.js",
   "scripts": {
     "test": "mocha test.js -R spec",
@@ -12,7 +12,7 @@
     "debug": "^2.1.1",
     "min-request": "^1.2.0"
   },
-  "description": "Tiny Web Driver",
+  "description": "Tiny Web Driver support selenium webdriver protocol like Phantomjs, sauceLabs",
   "keywords": [
     "webdriver",
     "phantomjs",
