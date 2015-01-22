@@ -19,5 +19,14 @@
     "phantom",
     "Selenium",
     "SauceLabs"
-  ]
+  ],
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chunpu/wd-exec.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chunpu/wd-exec/issues"
+  },
+  "homepage": "https://github.com/chunpu/wd-exec"
 }

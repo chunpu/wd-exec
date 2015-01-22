@@ -41,7 +41,7 @@ proto.init = function(opt, cb) {
 
     var me = this
 
-    //https://code.google.com/p/selenium/wiki/DesiredCapabilities
+    // https://code.google.com/p/selenium/wiki/DesiredCapabilities
     request(host + basePath, {
         body: {
             desiredCapabilities: browser

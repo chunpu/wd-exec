@@ -1,19 +1,3 @@
-wd-exec@1.1.0
-===
-
-[![Build status][travis-image]][travis-url]
-[![NPM version][npm-image]][npm-url]
-[![Downloads][downloads-image]][downloads-url]
-
-Tiny Web Driver
-
-Installation
----
-
-```sh
-npm install wd-exec 
-```
-
 Usage
 ---
 
@@ -87,15 +71,3 @@ session.exit(function(err) {
 	// ...
 })
 ```
-
-License
----
-
-ISC
-
-[npm-image]: https://img.shields.io/npm/v/wd-exec.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/wd-exec
-[travis-image]: https://img.shields.io/travis/chunpu/wd-exec.svg?style=flat-square
-[travis-url]: https://travis-ci.org/chunpu/wd-exec
-[downloads-image]: http://img.shields.io/npm/dm/wd-exec.svg?style=flat-square
-[downloads-url]: https://npmjs.org/package/wd-exec
