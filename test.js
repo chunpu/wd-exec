@@ -16,7 +16,7 @@ describe('basic test', function() {
 		})
 	})
 	it('should return eval value', function(done) {
-	    session.init(function(err) {
+	    session.init(function(err, value) {
 			assert(!err)
 			var val = 1024
 			session.exec('execute', {

@@ -3,7 +3,7 @@ Usage
 
 ```js
 var session = require('wd-exec')()
-session.init(function(err) {
+session.init(function(err, value) {
 	session.exec('execute', {
 		body: {
 			script: 'return 1024',
@@ -15,6 +15,19 @@ session.init(function(err) {
 		session.exit()
 	})
 })
+```
+
+after init, u may get session info by
+
+- `session.id`
+- `session.browser` the exact browser info, e.g.
+
+```js
+{
+	name: 'phantomjs',
+	version: '1.9.8',
+	platform: 'linux-unknown-64bit'
+}
 ```
 
 Api
