@@ -37,6 +37,8 @@ proto.init = function(opt, cb) {
 		browser.accessKey = opt.accessKey || env.SAUCE_ACCESS_KEY
 	}
 
+	browser.browserName = browser.browserName || opt.browserName || browser.name
+
 	debug('init options, host: %s, browser: %o', host, browser)
 
 	var me = this
@@ -87,8 +89,13 @@ proto.exec = function(name, opt, cb) {
 	request(me.host + pathname, opt, function(err, res, body) {
 		if (err) return cb(err)
 		try {
-			body = JSON.parse(body) || {}
+			body = JSON.parse(body)
 		} catch (e) {}
+		body = body || {}
+		if (null == body.status) {
+			// some api has no callback but 204 no content
+			return cb(null, body.value)
+		}
 		if (0 == body.status) {
 			// sessionId, status, value
 			cb(null, body.value)
