@@ -1,25 +1,29 @@
-var session = require('./')()
+var Session = require('./')
 var assert = require('assert')
 var spawn = require('child_process').spawn
 
-describe('basic test', function() {
-	var phantom
-	before(function(done) {
-		phantom = spawn('phantomjs', ['-w'])
-		phantom.stdout.on('data', function(buf) {
-			buf = buf + ''
-			if (/8910/.test(buf)) {
-				done()
-			}
-		})
-		phantom.stderr.on('data', function(buf) {
-			console.error(buf + '')
-		})
+var phantom
+
+before(function(done) {
+	phantom = spawn('phantomjs', ['-w'])
+	phantom.stdout.on('data', function(buf) {
+		buf = buf + ''
+		if (/8910/.test(buf)) {
+			done()
+		}
 	})
-	after(function() {
-		spawn('pkill', ['-9', 'phantomjs'])
+	phantom.stderr.on('data', function(buf) {
+		console.error(buf + '')
 	})
+})
+
+after(function() {
+	spawn('pkill', ['-9', 'phantomjs'])
+})
+
+describe('phantom test', function() {
 	it('should return eval value', function(done) {
+		var session = Session()
 		session.init(function(err, value) {
 			assert(!err)
 			var val = 1024
@@ -33,6 +37,73 @@ describe('basic test', function() {
 				assert.equal(value, val)
 				done()
 			})
+		})
+	})
+})
+
+
+describe('saucelabs test using location', function() {
+	var session = Session()
+	it('should work with mobile browser', function(done) {
+		session.init({
+			  sauceLabs: true
+			, browser: {
+				  name: 'iPhone'
+				, version: '8.1'
+			}
+		}, function(err, value) {
+			assert(!err)
+			var val = 1024
+			session.exec('execute', {
+				body: {
+					script: 'return ' + val,
+					args: []
+				}
+			}, function(err, value) {
+				assert(!err)
+				assert.equal(value, val)
+				done()
+			})
+		})
+	})
+	after(function(done) {
+		session.exit(function(err) {
+			assert(!err)
+			done()
+		})
+	})
+})
+
+
+describe('saucelabs test normal', function() {
+	var session = Session()
+	it('should work with old ie', function(done) {
+		session.init({
+			  sauceLabs: true
+			, browser: {
+				  name: 'internet explorer'
+				, version: '6'
+				, platform: 'Windows XP'
+			}
+		}, function(err, value) {
+			assert(!err)
+			var val = 1024
+			session.exec('execute', {
+				body: {
+					script: 'return ' + val,
+					args: []
+				}
+			}, function(err, value) {
+				assert(!err)
+				assert.equal(value, val)
+				done()
+			})
+		})
+	})
+	after(function(done) {
+		session.exit(function(err) {
+			assert(!err)
+			done()
 		})
 	})
 })

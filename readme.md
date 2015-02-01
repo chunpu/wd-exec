@@ -1,4 +1,4 @@
-wd-exec@1.1.1
+wd-exec
 ===
 
 [![Build status][travis-image]][travis-url]

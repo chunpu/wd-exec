@@ -55,18 +55,35 @@ proto.init = function(opt, cb) {
 		}
 		var json
 		try {
-			json = JSON.parse(body) || {}
+			json = JSON.parse(body)
 		} catch (e) {
+			json = undefined
 			debug('init response abnormal: %s', body)
 		}
 		debug('init: %o', json)
+		json = json || {}
 		var id = json.sessionId
-		if (0 == json.status && 'string' == typeof id) {
+		if (!id) {
+			// mobile saucelabs use location to return session id
+			var headers = res.headers
+			debug('try headers: %o', headers)
+			var url = headers.location
+			if (url) {
+				var arr = url.split('/')
+				var index = arr.indexOf('session')
+				if (index > 0) {
+					id = arr[index + 1]
+				}
+			}
+		}
+		if (!id) return cb(new Error('fail to get session id'))
+		if ('string' == typeof id) {
+			debug('init id: %s', id)
 			me.id = id
 			me.rawBrowser = browser
 			me.host = host
-			var value = json.value
-			me.initInfo = value || {}
+			var value = json.value || {}
+			me.initInfo = value
 			me.browser = {
 				name: value.browserName,
 				version: value.version,
