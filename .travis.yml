@@ -1,1 +1,5 @@
 language: node_js
+env:
+  global:
+  - SAUCE_USERNAME: chunpu
+  - secure: mPD/FW9pBTG3w2RSzNxc0xi+9mS8TKr1AVYL6n8oePrnsW2NKvOMG4w5m8rZ6N1adKPx4WH3tFPAM6EN/sDioN6/2GDOxVE0lX4woDyDAs0w4vDz7MrwKLaWqV8w+Z8w7dmaPi/T58uQ4ZhHI69citxOWdE2oVGXfhyNT6cBGyw=
