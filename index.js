@@ -58,7 +58,6 @@ proto.init = function(opt, cb) {
 			json = JSON.parse(body)
 		} catch (e) {
 			json = undefined
-			debug('init response abnormal: %s', body)
 		}
 		debug('init: %o', json)
 		json = json || {}
@@ -76,7 +75,10 @@ proto.init = function(opt, cb) {
 				}
 			}
 		}
-		if (!id) return cb(new Error('fail to get session id'))
+		if (!id) {
+			debug('init response abnormal: %s', body, res.headers)
+			return cb(new Error('fail to get session id'))
+		}
 		if ('string' == typeof id) {
 			debug('init id: %s', id)
 			me.id = id
@@ -120,10 +122,20 @@ proto.exec = function(name, opt, cb) {
 			cb(new Error(body))
 		}
 	})
+	return this
 }
 
 proto.exit = function(cb) {
-	this.exec('', {
+	return this.exec('', {
 		method: 'DELETE'
+	}, cb)
+}
+
+proto.open = function(val, cb) {
+	return this.exec('url', {
+		method: 'POST',
+		body: {
+			url: val
+		}
 	}, cb)
 }

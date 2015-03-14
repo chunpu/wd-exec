@@ -5,6 +5,7 @@ var spawn = require('child_process').spawn
 var phantom
 
 before(function(done) {
+	spawn('pkill', ['-9', 'phantomjs'])
 	phantom = spawn('phantomjs', ['-w'])
 	phantom.stdout.on('data', function(buf) {
 		buf = buf + ''
@@ -39,8 +40,27 @@ describe('phantom test', function() {
 			})
 		})
 	})
-})
 
+	it('can open a url', function(done) {
+		var session = Session()
+		session.init(function(err, val) {
+			assert(!err)
+			session.open('http://baidu.com', function(err, val) {
+				assert(!err)
+				session.exec('execute', {
+					body: {
+						script: 'return location.href',
+						args: []
+					}
+				}, function(err, val) {
+					assert(!err)
+					assert(/baidu/i.test(val))
+					done()
+				})
+			})
+		})
+	})
+})
 
 describe('saucelabs test using location', function() {
 	var session = Session()

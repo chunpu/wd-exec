@@ -84,3 +84,12 @@ session.exit(function(err) {
 	// ...
 })
 ```
+
+
+#### open url
+
+```js
+session.open('http://www.baidu.com', function(err) {
+	// ...
+})
+```

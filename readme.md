@@ -4,6 +4,14 @@ wd-exec
 [![Build status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
+[![Dependency Status][david-image]][david-url]
+[npm-image]: https://img.shields.io/npm/v/wd-exec.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/wd-exec
+[downloads-image]: http://img.shields.io/npm/dm/wd-exec.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/wd-exec
+[david-image]: http://img.shields.io/david/chunpu/wd-exec.svg?style=flat-square
+[david-url]: https://david-dm.org/chunpu/wd-exec
+
 
 Tiny Web Driver support selenium webdriver protocol like Phantomjs, sauceLabs
 
@@ -11,7 +19,7 @@ Installation
 ---
 
 ```sh
-npm install wd-exec
+npm i wd-exec
 ```
 
 Usage
@@ -101,14 +109,21 @@ session.exit(function(err) {
 })
 ```
 
+
+#### open url
+
+```js
+session.open('http://www.baidu.com', function(err) {
+	// ...
+})
+```
+
 License
 ---
 
-ISC
+[![License][license-image]][license-url]
 
-[npm-image]: https://img.shields.io/npm/v/wd-exec.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/wd-exec
 [travis-image]: https://img.shields.io/travis/chunpu/wd-exec.svg?style=flat-square
 [travis-url]: https://travis-ci.org/chunpu/wd-exec
-[downloads-image]: http://img.shields.io/npm/dm/wd-exec.svg?style=flat-square
-[downloads-url]: https://npmjs.org/package/wd-exec
+[license-image]: http://img.shields.io/npm/l/wd-exec.svg?style=flat-square
+[license-url]: #
